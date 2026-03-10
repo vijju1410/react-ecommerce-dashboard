@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 
-=======
 🛒 React E-Commerce Dashboard
-
-
-
-
-
-
 
 
 A React-based E-Commerce Dashboard developed as part of a ReactJS Internship Assignment.
