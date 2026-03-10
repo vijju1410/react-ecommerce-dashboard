@@ -12,39 +12,41 @@ function Profile(){
 
   useEffect(()=>{
 
-    const session = JSON.parse(localStorage.getItem("session"));
+  const session = JSON.parse(localStorage.getItem("session"));
 
-    if(!session){
-      navigate("/");
-      return;
-    }
+  if(!session){
+    navigate("/");
+    return;
+  }
 
-    if(Date.now() > session.expiry){
-      localStorage.removeItem("session");
-Swal.fire({
-  icon: "warning",
-  title: "Session Expired",
-  text: "Please login again",
-  confirmButtonColor: "#3085d6"
-});      navigate("/");
-    }
+  if(Date.now() > session.expiry){
+    localStorage.removeItem("session");
+    Swal.fire({
+      icon: "warning",
+      title: "Session Expired",
+      text: "Please login again",
+      confirmButtonColor: "#3085d6"
+    });
+    navigate("/");
+    return;
+  }
 
-    const user = JSON.parse(localStorage.getItem("user"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if(user){
-      setName(user.name);
-      setEmail(user.email);
-      setPassword(user.password);
-    }
+  const currentUser = users.find(u => u.email === session.email);
 
-  },[]);
+  if(currentUser){
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+    setPassword(currentUser.password);
+  }
 
+},[]);
   const handleUpdate = () => {
 
   const nameRegex = /^[A-Za-z ]+$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Name validation
   if(!nameRegex.test(name)){
     Swal.fire({
       icon: "error",
@@ -54,7 +56,6 @@ Swal.fire({
     return;
   }
 
-  // Email validation
   if(!emailRegex.test(email)){
     Swal.fire({
       icon: "error",
@@ -64,7 +65,6 @@ Swal.fire({
     return;
   }
 
-  // Password validation
   if(password.length < 6){
     Swal.fire({
       icon: "error",
@@ -74,13 +74,16 @@ Swal.fire({
     return;
   }
 
-  const updatedUser = {
-    name,
-    email,
-    password
-  };
+  const session = JSON.parse(localStorage.getItem("session"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-  localStorage.setItem("user", JSON.stringify(updatedUser));
+  const updatedUsers = users.map(u =>
+    u.email === session.email
+      ? { name, email, password }
+      : u
+  );
+
+  localStorage.setItem("users", JSON.stringify(updatedUsers));
 
   Swal.fire({
     icon: "success",
