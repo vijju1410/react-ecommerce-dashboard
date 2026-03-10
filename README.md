@@ -169,19 +169,20 @@ Storage	LocalStorage
 Deployment	Vercel
 📁 Project Structure
 src
- ├── components
- │     Navbar.js
- │
- ├── pages
- │     Login.js
- │     Register.js
- │     Dashboard.js
- │     Products.js
- │     Cart.js
- │     Profile.js
- │
- ├── App.js
- ├── index.js
+├── components
+│ └── Navbar.js
+│
+├── pages
+│ ├── Login.js
+│ ├── Register.js
+│ ├── Dashboard.js
+│ ├── Products.js
+│ ├── Cart.js
+│ └── Profile.js
+│
+├── App.js
+└── index.js
+
 ⚙️ Installation
 
 Clone the repository:
