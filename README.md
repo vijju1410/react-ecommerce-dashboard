@@ -166,22 +166,24 @@ Styling	Tailwind CSS
 API Calls	Axios
 Alerts	SweetAlert2
 Storage	LocalStorage
-Deployment	Vercel
-📁 Project Structure
+Deployment	Vercel## 📁 Project Structure
+
+```bash
 src
 ├── components
-│ └── Navbar.js
+│   └── Navbar.js
 │
 ├── pages
-│ ├── Login.js
-│ ├── Register.js
-│ ├── Dashboard.js
-│ ├── Products.js
-│ ├── Cart.js
-│ └── Profile.js
+│   ├── Login.js
+│   ├── Register.js
+│   ├── Dashboard.js
+│   ├── Products.js
+│   ├── Cart.js
+│   └── Profile.js
 │
 ├── App.js
 └── index.js
+```
 
 ⚙️ Installation
 
